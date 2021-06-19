@@ -1,0 +1,27 @@
+This application is built and tested over a LAMP arcitecture (XAMPP version 3.2.4)
+  + Apache 2.4.41
+  + MariaDB 10.4.11
+  + PHP 7.3.15
+
+Enable mod_rewrite for rewrite conditions in .htaccess to work
+
+DATABASE CONNECTIVITY SETTINGS are found here: application/config/database.php
+SCHEMA:
+CREATE DATABASE `calculator`;
+CREATE TABLE `calculations` (
+ `ID` int(11) NOT NULL AUTO_INCREMENT,
+ `Number1` double NOT NULL,
+ `Number2` double DEFAULT NULL,
+ `Operation` varchar(50) NOT NULL,
+ `Created` datetime NOT NULL,
+ PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4
+
+
+Custom logs will be saved under application/logs/log-YYYY-MM-DD.log.
+
+Api path is http://localhost/calculator/api/getRecords/returnMyJson to return all the operations performed in the last 
+24h in a JSON format
+
+The file cron.bat is located at the root of the application.
+When executed, this will call the DeleteOldRecords index method to delete records older than 5 days
